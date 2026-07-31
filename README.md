@@ -96,9 +96,13 @@
 
 AI는 **어떤 화면이 필요한지** 생성하고, 서버는 **정확한 데이터와 실행 가능성**을 보장합니다.
 
-- AI 담당: 복합 의도 분석, 위젯 선택, 위젯 순서 및 파라미터 생성
-- 서버 담당: 허용 위젯 검증, 실시간 환율 조회, 데이터 계산, API 응답 구성
-- 사용자 담당: 실제 금융 거래 전 최종 확인 및 승인
+- **Dynamic UI Engine**: 복합 의도를 분석해 위젯 종류·순서·파라미터를 JSON으로 생성
+- **Widget Registry & Guardrail**: 승인된 9개 위젯과 JSON Schema를 기준으로 필수 값·타입·범위를 검증
+- **Secure Executor**: AI가 아닌 서버가 환율·수수료 계산, 입력값 재검증, 외부 API 호출과 결과 표준화를 담당
+- **Fallback & Recovery**: JSON 파싱 실패, 미지원 요청, 외부 API 장애 시 재시도 또는 안전한 기본 화면으로 복구
+- **Financial API Adapter**: 현재 환율 API에서 KB 계좌·카드, 본인인증, 공공기관, 결제·보험 API로 단계적 확장
+- **Security & Operations**: OAuth 2.0, 개인정보 마스킹, 암호화, 감사 로그, Rate Limit, AI Trace와 CI/CD 적용
+- **Human Confirmation**: 송금·결제·카드 정지 등 실제 금융 거래는 사용자 최종 확인 후 실행
 
 ## 기술적 특징
 
