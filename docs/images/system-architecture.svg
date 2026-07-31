@@ -1,0 +1,277 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#f6f9ff"/>
+    </linearGradient>
+    <linearGradient id="frontFill" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#edf5ff"/>
+    </linearGradient>
+    <linearGradient id="backendFill" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#f2fbf3"/>
+    </linearGradient>
+    <linearGradient id="aiFill" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#edf3ff"/>
+    </linearGradient>
+    <linearGradient id="futureFill" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fffdf9"/>
+      <stop offset="1" stop-color="#fff3e7"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="5" stdDeviation="7" flood-color="#10203d" flood-opacity="0.09"/>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#182132"/>
+    </marker>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#2463eb"/>
+    </marker>
+    <marker id="arrowOrange" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#f26a13"/>
+    </marker>
+    <style>
+      text { font-family: Arial, 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif; fill:#111827; }
+      .title { font-size:36px; font-weight:800; letter-spacing:-1px; }
+      .lane-num { font-size:25px; font-weight:800; fill:white; }
+      .lane-title { font-size:21px; font-weight:800; }
+      .h1 { font-size:28px; font-weight:800; }
+      .h2 { font-size:22px; font-weight:800; }
+      .body { font-size:17px; font-weight:500; }
+      .small { font-size:14px; font-weight:500; fill:#4b5563; }
+      .micro { font-size:12px; font-weight:700; }
+      .pill { font-size:13px; font-weight:800; }
+      .line { fill:none; stroke:#182132; stroke-width:2.2; marker-end:url(#arrow); }
+      .support { fill:none; stroke:#2463eb; stroke-width:2; stroke-dasharray:7 6; marker-end:url(#arrowBlue); }
+      .future { fill:none; stroke:#f26a13; stroke-width:2.2; stroke-dasharray:8 7; marker-end:url(#arrowOrange); }
+      .card { fill:white; stroke:#b9c2d0; stroke-width:1.5; rx:17; filter:url(#shadow); }
+    </style>
+  </defs>
+
+  <rect width="1600" height="1200" fill="url(#bg)"/>
+  <text x="26" y="48" class="title">CURRENT SYSTEM + PRODUCTION EXPANSION</text>
+  <text x="1570" y="47" text-anchor="end" class="small">깨비뚝딱 · Dynamic Generative Financial UI</text>
+
+  <!-- lane rail -->
+  <line x1="190" y1="82" x2="190" y2="1144" stroke="#c9d2df" stroke-width="2" stroke-dasharray="4 6"/>
+
+  <!-- lane 1 -->
+  <rect x="28" y="86" width="39" height="39" rx="8" fill="#175cd3"/>
+  <text x="47.5" y="114" text-anchor="middle" class="lane-num">1</text>
+  <text x="28" y="156" class="lane-title" fill="#175cd3">Client /</text>
+  <text x="28" y="183" class="lane-title" fill="#175cd3">Frontend</text>
+
+  <rect x="220" y="91" width="294" height="144" rx="18" fill="#fff" stroke="#b9c2d0" stroke-width="1.5" filter="url(#shadow)"/>
+  <circle cx="275" cy="140" r="21" fill="#10203d"/>
+  <path d="M239 201c4-28 18-43 36-43s32 15 36 43z" fill="#10203d"/>
+  <text x="330" y="145" class="h2">사용자 요청</text>
+  <text x="330" y="176" class="body">자연어 금융 상황 입력</text>
+  <text x="330" y="203" class="small">예: “여행 준비를 도와줘”</text>
+
+  <path d="M514 163 H596" class="line"/>
+  <text x="554" y="147" text-anchor="middle" class="micro">HTTPS</text>
+
+  <rect x="610" y="70" width="955" height="199" rx="20" fill="url(#frontFill)" stroke="#6f9ee8" stroke-width="1.7" filter="url(#shadow)"/>
+  <!-- Netlify -->
+  <g transform="translate(647 99)">
+    <path d="M25 0 45 20 25 40 5 20Z" fill="#13b9bd"/>
+    <path d="M25 0v40M5 20h40M11 6l28 28M39 6 11 34" stroke="#fff" stroke-width="2"/>
+  </g>
+  <text x="714" y="119" class="h1">Frontend</text>
+  <text x="714" y="149" class="body">Netlify · kkbb-ddookddak.netlify.app</text>
+
+  <!-- React -->
+  <g transform="translate(680 185)" stroke="#1597f5" stroke-width="3" fill="none">
+    <ellipse rx="32" ry="12"/><ellipse rx="32" ry="12" transform="rotate(60)"/><ellipse rx="32" ry="12" transform="rotate(120)"/><circle r="5" fill="#1597f5" stroke="none"/>
+  </g>
+  <text x="680" y="241" text-anchor="middle" class="body">React 19</text>
+  <!-- Vite -->
+  <g transform="translate(850 168)">
+    <path d="M0 0 45 9 24 57Z" fill="#805af5"/><path d="M26 6 51 0 34 25 43 24 20 57 27 30 17 32Z" fill="#ffd12e"/>
+  </g>
+  <text x="875" y="241" text-anchor="middle" class="body">Vite 8</text>
+  <!-- Tailwind -->
+  <g transform="translate(1035 177)" fill="#24b9d1">
+    <path d="M0 20c10-22 24-22 40-10 8 6 16 6 25-3-10 22-24 22-40 10-8-6-16-6-25 3Z"/>
+    <path d="M24 38c10-22 24-22 40-10 8 6 16 6 25-3-10 22-24 22-40 10-8-6-16-6-25 3Z"/>
+  </g>
+  <text x="1080" y="241" text-anchor="middle" class="body">Tailwind 4</text>
+
+  <rect x="1214" y="111" width="320" height="126" rx="16" fill="#fff" stroke="#b9c2d0" stroke-width="1.4"/>
+  <g transform="translate(1245 141)" fill="#2463eb">
+    <rect width="24" height="24" rx="6"/><rect x="31" width="24" height="24" rx="6"/><rect y="31" width="24" height="24" rx="6"/><rect x="31" y="31" width="24" height="24" rx="6"/>
+  </g>
+  <text x="1320" y="156" class="h2">Dynamic Canvas</text>
+  <text x="1320" y="184" class="body">WidgetRenderer · 9 Widgets</text>
+  <rect x="1318" y="197" width="184" height="26" rx="13" fill="#edf3ff" stroke="#a8c2fa"/>
+  <text x="1410" y="215" text-anchor="middle" class="micro" fill="#175cd3">승인 위젯만 렌더링</text>
+
+  <!-- frontend request -->
+  <path d="M985 269 V322" class="line"/>
+  <text x="1002" y="302" class="micro">POST /api/canvas</text>
+
+  <!-- lane 2 / 3 -->
+  <rect x="28" y="323" width="39" height="39" rx="8" fill="#178332"/>
+  <text x="47.5" y="351" text-anchor="middle" class="lane-num">2</text>
+  <text x="28" y="394" class="lane-title" fill="#117229">Backend</text>
+  <text x="28" y="421" class="lane-title" fill="#117229">Orchestration</text>
+  <rect x="28" y="503" width="39" height="39" rx="8" fill="#2463eb"/>
+  <text x="47.5" y="531" text-anchor="middle" class="lane-num">3</text>
+  <text x="28" y="574" class="lane-title" fill="#175cd3">AI · Safety</text>
+  <text x="28" y="601" class="lane-title" fill="#175cd3">Execution</text>
+
+  <rect x="220" y="323" width="1345" height="406" rx="22" fill="url(#backendFill)" stroke="#579659" stroke-width="1.8"/>
+  <g transform="translate(251 345)">
+    <path d="M28 0 53 14v29L28 58 3 43V14Z" fill="#61bd10"/>
+    <path d="M28 12v21M17 20a17 17 0 1 0 22 0" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+  </g>
+  <text x="322" y="379" class="h1" fill="#145b24">Spring Boot API</text>
+  <text x="322" y="409" class="body">Java 17 · Spring Boot 3.5 · REST orchestration</text>
+  <rect x="1409" y="348" width="126" height="32" rx="16" fill="#eef8ed" stroke="#75a572"/>
+  <text x="1472" y="370" text-anchor="middle" class="pill" fill="#145b24">IMPLEMENTED</text>
+
+  <!-- API layer -->
+  <rect x="250" y="447" width="224" height="205" rx="17" fill="#fff" stroke="#74a978" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="278" y="484" class="h2" fill="#145b24">API Layer</text>
+  <text x="278" y="519" class="body">Canvas Controller</text>
+  <text x="278" y="548" class="small">요청 수신 · CORS</text>
+  <text x="278" y="575" class="small">CanvasResponse 반환</text>
+  <rect x="275" y="603" width="174" height="31" rx="15" fill="#eff8ed" stroke="#94bf92"/>
+  <text x="362" y="624" text-anchor="middle" class="micro" fill="#145b24">/api/canvas</text>
+
+  <path d="M474 548 H512" class="line"/>
+
+  <!-- AI engine -->
+  <rect x="515" y="422" width="365" height="230" rx="18" fill="url(#aiFill)" stroke="#2463eb" stroke-width="1.7" filter="url(#shadow)"/>
+  <circle cx="564" cy="476" r="27" fill="#2463eb"/>
+  <path d="M549 474c0-12 8-20 18-20 11 0 19 8 19 18 0 13-10 16-10 27M558 501h16" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+  <text x="608" y="468" class="h2" fill="#1747ad">Dynamic Generative</text>
+  <text x="608" y="498" class="h2" fill="#1747ad">UI Engine</text>
+  <text x="552" y="535" class="body">GPT-4o-mini · Function Calling</text>
+  <text x="552" y="574" class="small">✓ 호출 의도 분석</text>
+  <text x="552" y="601" class="small">✓ 위젯 종류·순서·파라미터 생성</text>
+  <rect x="716" y="615" width="139" height="27" rx="13" fill="#eaf1ff" stroke="#8cafef"/>
+  <text x="785" y="634" text-anchor="middle" class="micro" fill="#175cd3">JSON OUTPUT</text>
+
+  <path d="M880 524 H916" class="line"/>
+
+  <!-- guardrail -->
+  <rect x="919" y="422" width="286" height="230" rx="18" fill="#fff" stroke="#579659" stroke-width="1.6" filter="url(#shadow)"/>
+  <path d="M958 452 987 462v22c0 20-12 35-29 43-17-8-29-23-29-43v-22Z" fill="#109b7c"/>
+  <path d="m946 484 9 9 17-22" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="1003" y="477" class="h2" fill="#145b24">Guardrail</text>
+  <text x="950" y="530" class="body">Schema Validation</text>
+  <text x="950" y="560" class="small">허용 위젯 규칙 검증</text>
+  <text x="950" y="587" class="small">필수 값·타입·범위 확인</text>
+  <text x="950" y="614" class="small">위험 액션 사용자 재확인</text>
+
+  <path d="M1205 524 H1236" class="line"/>
+
+  <!-- executor -->
+  <rect x="1239" y="422" width="295" height="230" rx="18" fill="#fff" stroke="#f08a3c" stroke-width="1.6" filter="url(#shadow)"/>
+  <g transform="translate(1266 451)" fill="none" stroke="#f26a13" stroke-width="3">
+    <circle cx="25" cy="25" r="23"/><path d="M25 10v15l11 8" stroke-linecap="round"/><path d="M10 49h30"/>
+  </g>
+  <text x="1327" y="475" class="h2" fill="#b94b08">Secure Executor</text>
+  <text x="1268" y="530" class="body">검증된 금융 기능 실행</text>
+  <text x="1268" y="560" class="small">정확한 계산 · API 호출</text>
+  <text x="1268" y="587" class="small">입력값 재검증 · 결과 표준화</text>
+  <rect x="1268" y="607" width="224" height="30" rx="15" fill="#fff3e8" stroke="#efb07e"/>
+  <text x="1380" y="627" text-anchor="middle" class="micro" fill="#b94b08">현재: 환율 · 확장: 금융 액션</text>
+
+  <!-- Widget registry + fallback -->
+  <rect x="516" y="670" width="364" height="42" rx="14" fill="#edf3ff" stroke="#7fa5ed" stroke-width="1.4"/>
+  <text x="536" y="696" class="body" fill="#1747ad">Widget Registry</text>
+  <text x="690" y="696" class="small">9개 위젯 · JSON Schema</text>
+  <path d="M698 670 V654" class="support"/>
+  <path d="M1344 269 V294 H1547 V691 H880" class="support"/>
+
+  <rect x="919" y="670" width="286" height="42" rx="14" fill="#fff8f1" stroke="#f0a46e" stroke-width="1.4" stroke-dasharray="7 5"/>
+  <text x="940" y="696" class="body" fill="#b94b08">Fallback &amp; Recovery</text>
+  <text x="1152" y="696" text-anchor="end" class="micro" fill="#b94b08">NEXT</text>
+  <path d="M1062 670 V653" class="future"/>
+
+  <!-- lane 4 -->
+  <rect x="28" y="758" width="39" height="39" rx="8" fill="#f26a13"/>
+  <text x="47.5" y="786" text-anchor="middle" class="lane-num">4</text>
+  <text x="28" y="829" class="lane-title" fill="#d6530b">External APIs /</text>
+  <text x="28" y="856" class="lane-title" fill="#d6530b">Expansion</text>
+
+  <path d="M1384 652 V778 H1465" class="future"/>
+
+  <!-- exchange -->
+  <rect x="220" y="777" width="342" height="186" rx="18" fill="#fff" stroke="#aab6c7" stroke-width="1.5" filter="url(#shadow)"/>
+  <circle cx="274" cy="831" r="28" fill="none" stroke="#10203d" stroke-width="3"/>
+  <path d="M246 831h56M274 803c-12 14-12 42 0 56M274 803c12 14 12 42 0 56" fill="none" stroke="#10203d" stroke-width="2"/>
+  <text x="319" y="825" class="h2">Exchange Rate API</text>
+  <text x="319" y="855" class="small">open.er-api.com · KRW 기준</text>
+  <text x="250" y="895" class="body">서버 조회·계산 · 6시간 캐시</text>
+  <rect x="357" y="915" width="174" height="30" rx="15" fill="#edf1f7" stroke="#b9c2d0"/>
+  <text x="444" y="935" text-anchor="middle" class="micro">CURRENT</text>
+
+  <path d="M1384 652 V733 H390 V777" class="line"/>
+
+  <!-- financial adapter -->
+  <rect x="592" y="762" width="973" height="216" rx="20" fill="url(#futureFill)" stroke="#f26a13" stroke-width="1.8" stroke-dasharray="9 7"/>
+  <text x="626" y="789" class="micro" fill="#d6530b">PRODUCTION EXPANSION</text>
+  <path d="M642 823h46M650 823v40M680 823v40M640 863h50M646 870h38M642 816l23-14 23 14Z" fill="none" stroke="#f26a13" stroke-width="3"/>
+  <text x="715" y="828" class="h1" fill="#d6530b">Financial API Adapter</text>
+  <text x="715" y="857" class="body">연동 모듈을 단계적으로 추가하는 Adapter 구조</text>
+  <line x1="623" y1="878" x2="1532" y2="878" stroke="#f1bd97"/>
+
+  <g transform="translate(630 901)">
+    <rect width="48" height="35" rx="6" fill="none" stroke="#f26a13" stroke-width="3"/><path d="M8 12h32M9 25h12" stroke="#f26a13" stroke-width="3"/>
+    <text x="66" y="17" class="body">KB 계좌 · 카드</text><text x="66" y="40" class="small">잔액 · 거래 · 분석일지</text>
+  </g>
+  <line x1="920" y1="897" x2="920" y2="954" stroke="#f1bd97"/>
+  <g transform="translate(950 897)">
+    <path d="M24 0 46 8v17c0 16-9 27-22 34C11 52 2 41 2 25V8Z" fill="none" stroke="#f26a13" stroke-width="3"/>
+    <circle cx="24" cy="21" r="7" fill="none" stroke="#f26a13" stroke-width="2"/><path d="M13 42c3-9 19-9 22 0" fill="none" stroke="#f26a13" stroke-width="2"/>
+    <text x="65" y="21" class="body">정부24 · 본인인증</text><text x="65" y="44" class="small">신분증 검증 · 권한 인증</text>
+  </g>
+  <line x1="1245" y1="897" x2="1245" y2="954" stroke="#f1bd97"/>
+  <g transform="translate(1275 903)">
+    <path d="M0 14h48v34H0zM8 14v-7h32v7M10 25h28" fill="none" stroke="#f26a13" stroke-width="3"/>
+    <text x="66" y="18" class="body">결제 · 보험</text><text x="66" y="41" class="small">QR · ATM · 여행보험</text>
+  </g>
+
+  <!-- lane 5 -->
+  <rect x="28" y="1010" width="39" height="39" rx="8" fill="#10203d"/>
+  <text x="47.5" y="1038" text-anchor="middle" class="lane-num">5</text>
+  <text x="28" y="1081" class="lane-title" fill="#10203d">Security /</text>
+  <text x="28" y="1108" class="lane-title" fill="#10203d">Operations</text>
+
+  <rect x="220" y="1004" width="1345" height="112" rx="18" fill="#f4f7fb" stroke="#7d899b" stroke-width="1.5" stroke-dasharray="8 6"/>
+  <text x="250" y="1037" class="micro" fill="#10203d">PRODUCTION BASELINE</text>
+  <g transform="translate(250 1057)">
+    <circle cx="18" cy="18" r="18" fill="#10203d"/><path d="M11 18l5 5 10-12" fill="none" stroke="#fff" stroke-width="3"/>
+    <text x="48" y="24" class="body">OAuth 2.0 · JWT</text>
+  </g>
+  <g transform="translate(495 1057)">
+    <circle cx="18" cy="18" r="18" fill="#10203d"/><path d="M18 8v20M8 18h20" stroke="#fff" stroke-width="3"/>
+    <text x="48" y="24" class="body">마스킹 · 암호화</text>
+  </g>
+  <g transform="translate(760 1057)">
+    <circle cx="18" cy="18" r="18" fill="#10203d"/><path d="M10 11h16v15H10zM13 7h10v4" fill="none" stroke="#fff" stroke-width="2.5"/>
+    <text x="48" y="24" class="body">Audit Log · Rate Limit</text>
+  </g>
+  <g transform="translate(1070 1057)">
+    <circle cx="18" cy="18" r="18" fill="#10203d"/><path d="M8 23l7-8 6 5 8-10" fill="none" stroke="#fff" stroke-width="2.5"/>
+    <text x="48" y="24" class="body">Monitoring · AI Trace</text>
+  </g>
+  <g transform="translate(1380 1057)">
+    <circle cx="18" cy="18" r="18" fill="#10203d"/><path d="M8 18h20M18 8v20" stroke="#fff" stroke-width="2.5"/>
+    <text x="48" y="24" class="body">CI/CD</text>
+  </g>
+
+  <!-- legend -->
+  <path d="M236 1160h70" class="line"/>
+  <text x="321" y="1166" class="small">현재 구현</text>
+  <path d="M430 1160h70" class="future"/>
+  <text x="515" y="1166" class="small">향후 단계적 연동</text>
+  <rect x="1035" y="1139" width="530" height="42" rx="12" fill="#f7f9fd" stroke="#c6cfdd"/>
+  <circle cx="1064" cy="1160" r="7" fill="#2463eb"/>
+  <text x="1082" y="1167" class="body" fill="#1747ad">AI는 화면을 설계하고, 서버는 검증·계산·실행을 보장</text>
+</svg>
