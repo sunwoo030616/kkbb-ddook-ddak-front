@@ -58,10 +58,6 @@
   </tr>
 </table>
 
-## 이렇게 입력해 보세요
-
-[배포 서비스](https://kkbb-ddookddak.netlify.app)에 접속한 뒤 아래 문장을 입력하고 전송하면 됩니다. 표현을 조금 바꿔도 AI가 목적과 필요한 정보를 분석합니다.
-
 ### 1. 지갑 분실 긴급 대응
 
 ```text
@@ -231,8 +227,6 @@ curl -X POST http://localhost:8080/api/canvas \
 
 - Frontend: [sunwoo030616/kkbb-ddook-ddak-front](https://github.com/sunwoo030616/kkbb-ddook-ddak-front)
 - Backend: [sunwoo030616/KKBB-ddook-ddak-back](https://github.com/sunwoo030616/KKBB-ddook-ddak-back)
-- Design: [2026 KB AI Challenge Figma](https://www.figma.com/design/hW2FEx2HREkWZSIQR4qJqf/2026-KB-AI-Challenge)
-- Live Demo: [kkbb-ddookddak.netlify.app](https://kkbb-ddookddak.netlify.app)
 
 ---
 
