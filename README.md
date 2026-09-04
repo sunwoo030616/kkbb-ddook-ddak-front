@@ -8,6 +8,7 @@
 **동적 생성형 금융 UI 서비스**
 
 [![2026 KB AI Challenge](https://img.shields.io/badge/2026_KB_AI_Challenge-FFCC00?style=for-the-badge&logoColor=black)](https://www.figma.com/design/hW2FEx2HREkWZSIQR4qJqf/2026-KB-AI-Challenge)
+[![Grand Prize](https://img.shields.io/badge/GRAND_PRIZE-금융감독원상-FFCC00?style=for-the-badge&labelColor=2D2D2D)](https://www.hankyung.com/article/202609032008P)
 [![Live Demo](https://img.shields.io/badge/LIVE_DEMO-222222?style=for-the-badge&logo=netlify&logoColor=00C7B7)](https://kkbb-ddookddak.netlify.app)
 
 <br />
@@ -19,6 +20,21 @@
 **[깨비뚝딱 바로 체험하기 →](https://kkbb-ddookddak.netlify.app)**
 
 </div>
+
+---
+
+## 🏆 제8회 Future Finance AI Challenge 대상
+
+> **풀스택 선우**팀의 **깨비뚝딱**이 대상인 **금융감독원상**을 수상했습니다.
+
+- 본선: 2026년 9월 2일, 이화여자대학교 이삼봉홀
+- 경쟁: 전국 약 300개 참가팀 중 본선 10팀 진출
+- 팀: 장선우(기획·디자인), 최선우(기획·프론트엔드), 박선우(기획·백엔드)
+- 수상 기사: [한국경제](https://www.hankyung.com/article/202609032008P) · [더퍼스트미디어](https://www.thefirstmedia.net/news/articleView.html?idxno=207727) · [스마트투데이](https://www.smarttoday.co.kr/ko-kr/articles/111151)
+
+<p align="center">
+  <img src="./docs/images/kb-ai-challenge-fullstack-sunwoo.png" width="900" alt="풀스택 선우 팀 소개 - 장선우, 최선우, 박선우" />
+</p>
 
 ---
 
