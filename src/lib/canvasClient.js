@@ -30,6 +30,20 @@ export function retainInputValues(values, screen) {
   return Object.fromEntries(Object.entries(values).filter(([id]) => active.has(id)));
 }
 
+export function isLegacyEndpoint(base) {
+  return /\/api\/canvas\/?$/.test(new URL(base, 'http://localhost').pathname);
+}
+
+export async function composeLegacy(base, message, previous, signal) {
+  const response = await fetch(base, { method: 'POST', headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ message }), signal });
+  if (!response.ok) throw new Error('금융 화면을 연결하지 못했어요. 기존 화면을 유지할게요.');
+  const data = await response.json();
+  return { status: 'composed', session_id: previous?.session_id || crypto.randomUUID(),
+    revision: (previous?.revision ?? 0) + 1, widgets: data.widgets,
+    greeting: data.greeting || '요청한 금융 기능을 준비했어요.' };
+}
+
 
 export async function composeScreen(message, screen, calculation, onProgress = () => {}) {
   const base = (import.meta.env?.VITE_CHAT_API_URL || '/api/canvas/v2').replace(/\/$/, '');
@@ -46,6 +60,8 @@ export async function composeScreen(message, screen, calculation, onProgress = (
     return value;
   }
   try {
+    // Keep existing deployments configured for v1 working while v2 is deployed separately.
+    if (isLegacyEndpoint(base)) return await composeLegacy(base, message, screen, signal);
     let response;
     for (let attempt = 0; attempt < 2; attempt += 1) {
       try { response = await fetch(base + '/jobs', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body, signal }); break; }

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { acceptScreen, requestBody, SUPPORTED_WIDGETS, composeScreen, retainInputValues } from '../src/lib/canvasClient.js';
+import { acceptScreen, requestBody, SUPPORTED_WIDGETS, composeScreen, retainInputValues, isLegacyEndpoint, composeLegacy } from '../src/lib/canvasClient.js';
 
 test('follow-up requests keep session revision and declare renderer capabilities', () => {
   const body = requestBody('보험은 빼줘', { session_id: 'session', revision: 3 });
@@ -56,4 +56,19 @@ test('removing one widget preserves the drafts of retained financial inputs', ()
   const values = { loan_inputs_widget: retained, funding_inputs_widget: { amount: '2000' } };
   assert.deepEqual(retainInputValues(values, { widgets: [{ id: 'loan_inputs_widget' }] }), { loan_inputs_widget: retained });
   assert.equal(retainInputValues(values, { widgets: [{ id: 'loan_inputs_widget' }] }).loan_inputs_widget, retained);
+});
+
+test('configured v1 deployments keep their existing endpoint and message contract', async () => {
+  assert.equal(isLegacyEndpoint('https://example.com/api/canvas'), true);
+  assert.equal(isLegacyEndpoint('/api/canvas/v2'), false);
+  const originalFetch = globalThis.fetch;
+  try {
+    globalThis.fetch = async (url, options) => {
+      assert.equal(url, 'https://example.com/api/canvas');
+      assert.deepEqual(JSON.parse(options.body), { message: '여행 준비' });
+      return { ok: true, json: async () => ({ widgets: [{ type: 'travel_insurance_widget' }] }) };
+    };
+    const result = await composeLegacy('https://example.com/api/canvas', '여행 준비', null);
+    assert.equal(acceptScreen(null, result).widgets[0].type, 'travel_insurance_widget');
+  } finally { globalThis.fetch = originalFetch; }
 });
