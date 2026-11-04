@@ -71,9 +71,10 @@ export default function ComposedWidget({ widget, values, onValuesChange, onSubmi
         {widget.actions?.length > 0 && <button disabled className="rounded-button bg-background py-3 text-body-2 text-gray">금융기관 연결 필요</button>}
       </>}
     {widget.knowledge && <aside aria-label="화면 구성의 공식 근거" className="flex flex-col gap-2 border-t border-gray/10 pt-3">
-      <p className="text-caption-1 text-gray">공식 자료 · 기준일 {widget.knowledge.as_of}</p>
+      <p className="text-caption-1 text-gray">공식 자료 검색 · 조회 기준일 {widget.knowledge.as_of}</p>
       {widget.knowledge.evidence.map(hit => <details key={hit.chunk_id} className="text-caption-1 text-gray">
         <summary className="cursor-pointer">{hit.title} · {hit.section}</summary>
+        <p className="pt-2">자료 확인일 {hit.verified_at}{hit.content_as_of ? ` · 내용 기준일 ${hit.content_as_of}` : ''}</p>
         <p className="py-2 leading-6">{hit.text}</p>
         <a href={hit.url} target="_blank" rel="noreferrer" className="underline">원문 확인 ↗</a>
       </details>)}
