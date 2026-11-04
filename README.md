@@ -1,3 +1,27 @@
+# 깨비뚝딱 React — 로컬 Generative UI v2 연동
+
+기존 깨비 캐릭터·채팅 시작·위젯 카드 흐름에서 Spring v2의 비동기 화면 구성 작업을 호출합니다.
+
+```bash
+npm ci
+cp .env.example .env.local
+npm run dev
+```
+
+백엔드의 Python AI 서비스는 8767, Spring은 8088에서 먼저 실행합니다. Vite가 `/api`를 Spring으로 프록시하며 접속 주소는 http://localhost:5173 입니다. 공개 배포 사이트는 변경하지 않았습니다.
+
+검증: `npm test`, `npm run lint`, `npm run build`.
+
+2026-11-04: 근거가 필요한 화면은 공식 문서의 절·원문 링크·기준일·자료 부족 상태를 표시합니다. `evidence_mode=once`가 기본이며, 재검색은 백엔드의 `adaptive` 실험 옵션입니다. 개발 평가에서 재검색의 추가 회수 이득이 확인되지 않아 기본값으로 켜지 않았습니다.
+
+기존 배포 환경이 `VITE_CHAT_API_URL=.../api/canvas`를 사용하면 v1의 `{message}` 요청을 유지합니다. 로컬 v2 주소는 비동기 `/jobs` 경로를 사용합니다.
+
+- `src/lib/canvasClient.js`: 작업 제출·진행 조회·안정적인 요청 ID·revision 계약.
+- `src/pages/ChatPage.jsx`: 기존 채팅과 생성 위젯, ID별 입력 보존.
+- `src/components/widgets/ComposedWidget.jsx`: 계산 폼·결과·출처·맥락·참고 환율 표시.
+
+브라우저에는 API 키를 넣지 않습니다. 생성은 로컬 모델을 사용하고 실제 계좌 거래는 수행하지 않습니다.
+
 <div align="center">
 
 # 깨비뚝딱 ✨
