@@ -1,11 +1,10 @@
 import kkaebi from "../../assets/logo/kkaebi.svg";
 
-function ChatOrigin({ onSuggestion, disabled }) {
+function ChatOrigin() {
   const chips = [
     "지갑을 분실했어요",
-    "동아리 회비와 지출 정산하기",
-    "일본 여행 준비하기",
-    "예금 유지·해지 비교하기",
+    "축제 주점 정산하기",
+    "이사 당일 이체 준비",
   ];
 
   return (
@@ -30,8 +29,6 @@ function ChatOrigin({ onSuggestion, disabled }) {
               <button
                 key={`${label}-${index}`}
                 type="button"
-                disabled={disabled}
-                onClick={() => onSuggestion(label)}
                 className="rounded-full border border-gray-200 bg-white px-4 py-2 text-body-2 text-darkgray"
               >
                 {label}

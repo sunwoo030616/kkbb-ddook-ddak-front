@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Title from "../Title.jsx";
+import Button from "../Button.jsx";
 import wallet from "../../assets/icons/wallet.svg";
 import copy from "../../assets/icons/copy.svg";
 

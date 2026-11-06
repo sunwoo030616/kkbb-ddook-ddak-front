@@ -13,6 +13,7 @@ function TravelCardChargeWidget({
   rateDescription,
   quickAmounts = [100, 500, 1000],
   suggestedAmount = 2000,
+  estimatedKrw = 378400,
   onSheetOpenChanged,
 }) {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
