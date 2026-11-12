@@ -6,7 +6,22 @@ import { createCanvas, recordFeedback, sessionStorageKey } from "../lib/canvasAp
 
 const EMPTY_CANVAS = { greeting: "", widgets: [] };
 const SESSION_TTL_MS = 30 * 60 * 1000;
-const STARTER_MESSAGES = ["여행 환전이랑 보험 알려줘", "분실 카드 정지해줘"];
+const STARTER_EXAMPLES = [
+  {
+    label: "지갑 분실",
+    message: "지갑을 잃어버렸어. 카드 정지하고 현금 찾는 방법이랑 신분증 재발급도 알려줘.",
+  },
+  {
+    label: "해외여행 준비",
+    message: "상하이로 3박 4일 여행 가는데 환전, QR 결제, 여행자보험 준비해줘.",
+  },
+  {
+    label: "동아리 회비 관리",
+    message: "테니스 동아리 총무야. 이번 달 회비 수납 현황이랑 지출 리포트, 카드 안전 설정 보여줘.",
+  },
+  { label: "여행 환전이랑 보험 알려줘", message: "여행 환전이랑 보험 알려줘" },
+  { label: "분실 카드 정지해줘", message: "분실 카드 정지해줘" },
+];
 
 function readSession() {
   try {
@@ -118,14 +133,16 @@ function ChatPage() {
         </div>
         {canvas.demo && <p className="text-caption-1 text-darkgray">시연 모드 · 예시 데이터로 동작합니다.</p>}
         {!canvas.greeting && (
-          <div className="flex flex-wrap gap-2">
-            {STARTER_MESSAGES.map((message) => (
-              <button key={message} type="button" disabled={isLoading} onClick={() => send(message)}
-                className="rounded-full bg-white px-3 py-2 text-caption-1 text-darkgray disabled:opacity-50">
-                {message}
-              </button>
+          <ul className="flex flex-wrap gap-2" aria-label="예시 요청">
+            {STARTER_EXAMPLES.map(({ label, message }) => (
+              <li key={label}>
+                <button type="button" disabled={isLoading} onClick={() => send(message)}
+                  className="rounded-full bg-white px-3 py-2 text-caption-1 text-darkgray disabled:opacity-50">
+                  {label}
+                </button>
+              </li>
             ))}
-          </div>
+          </ul>
         )}
         {error && <p role="alert" className="rounded-button bg-white p-3 text-body-2 text-darkgray">{error}</p>}
         {canvas.widgets.map((entry) => {
