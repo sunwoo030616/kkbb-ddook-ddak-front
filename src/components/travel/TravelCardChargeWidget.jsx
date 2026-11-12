@@ -13,7 +13,8 @@ function TravelCardChargeWidget({
   rateDescription,
   quickAmounts = [100, 500, 1000],
   suggestedAmount = 2000,
-  estimatedKrw = 378400,
+  supported,
+  unsupportedMessage,
   onSheetOpenChanged,
 }) {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
@@ -53,6 +54,15 @@ function TravelCardChargeWidget({
     onSheetOpenChanged?.(false);
   };
 
+  if (supported === false || !Number.isFinite(exchangeRate)) {
+    return (
+      <section className="flex flex-col gap-3 rounded-card bg-white px-4 py-5">
+        <Title icon={dollar} title={title} />
+        <p className="text-body-2 text-darkgray">{unsupportedMessage || "환율을 확인하지 못했어요."}</p>
+      </section>
+    );
+  }
+
   return (
     <>
       <section className="flex flex-col gap-3 rounded-card bg-white px-4 py-5">
@@ -78,7 +88,7 @@ function TravelCardChargeWidget({
           </div>
 
           <span className="px-1 text-caption-1 text-gray">
-            현재 환율 1 {currency} = 약 {exchangeRate}원 ({rateDescription})
+            환율 1 {currency} = 약 {exchangeRate}원 ({rateDescription})
           </span>
         </div>
       </section>
@@ -97,7 +107,7 @@ function TravelCardChargeWidget({
         >
           <div className="mb-4 flex flex-col gap-2">
             <span className="mx-auto h-1 w-10 rounded-full bg-gray-300" />
-            <p className="text-header font-semibold">위안화 충전하기</p>
+            <p className="text-header font-semibold">{currency} 충전하기</p>
           </div>
 
           <div className="rounded-card bg-background px-4 py-4">
