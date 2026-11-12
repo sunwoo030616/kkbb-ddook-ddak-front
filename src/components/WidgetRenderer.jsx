@@ -1,6 +1,5 @@
 // src/components/WidgetRenderer.jsx
 import TravelCardChargeWidget from "./travel/TravelCardChargeWidget.jsx";
-import Plan from "./travel/Plan.jsx";
 import OverseasQrPaymentWidget from "./travel/OverseasQrPaymentWidget.jsx";
 import TravelInsuranceWidget from "./travel/TravelInsuranceWidget.jsx";
 
@@ -8,14 +7,13 @@ import GroupAccount from "./widgets/GroupAccount.jsx";
 import ExpenseReport from "./widgets/ExpenseReport.jsx";
 import CardSafety from "./widgets/CardSafety.jsx";
 import StopCard from "./widgets/StopCard.jsx";
-import Atm from "./widgets/Atm.jsx";
 import AtmNum from "./widgets/AtmNum.jsx";
 import AtmPlace from "./widgets/AtmPlace.jsx";
 import AtmDes from "./widgets/AtmDes.jsx";
 import Done from "./widgets/Done.jsx";
 import ReceiveInfo from "./widgets/ReceiveInfo.jsx";
 
-function WidgetRenderer({ widget, onSheetOpenChanged }) {
+function WidgetRenderer({ widget, onSheetOpenChanged, onActionCompleted }) {
   switch (widget.type) {
     case "travel_card_charge_widget":
       return <TravelCardChargeWidget {...widget} onSheetOpenChanged={onSheetOpenChanged} />;
@@ -36,7 +34,7 @@ function WidgetRenderer({ widget, onSheetOpenChanged }) {
       return <CardSafety {...widget} />;
 
     case "card_freeze_all":
-      return <StopCard {...widget} />;
+      return <StopCard {...widget} onActionCompleted={onActionCompleted} />;
 
     case "atm_smart_withdrawal":
       return (

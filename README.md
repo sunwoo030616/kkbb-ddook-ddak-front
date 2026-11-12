@@ -165,16 +165,15 @@ AI는 여행지에서 사용할 통화 코드와 필요한 기능을 판단하�
 
 ### 1. Backend 실행
 
-백엔드 저장소를 내려받아 OpenAI API 키를 설정합니다.
+발표 시연은 키 없이 로컬에서 실행할 수 있습니다.
 
 ```bash
 git clone https://github.com/sunwoo030616/KKBB-ddook-ddak-back.git
 cd KKBB-ddook-ddak-back
-export OPENAI_API_KEY="your-openai-api-key"
-./mvnw spring-boot:run
+SPRING_PROFILES_ACTIVE=presentation ./mvnw spring-boot:run
 ```
 
-백엔드는 기본적으로 `http://localhost:8080`에서 실행됩니다.
+일반 JEV 흐름을 테스트하려면 `presentation` 프로필을 끄고 백엔드에 `JEV_AI_API_KEY`를 설정합니다. 모의 실행 기능만 켤 때는 `APP_ACTION_DEMO_ENABLED=true`를 설정합니다.
 
 ### 2. Frontend 실행
 
@@ -182,21 +181,17 @@ export OPENAI_API_KEY="your-openai-api-key"
 git clone https://github.com/sunwoo030616/kkbb-ddook-ddak-front.git
 cd kkbb-ddook-ddak-front
 npm install
-```
-
-프로젝트 루트에 `.env.local`을 생성합니다.
-
-```env
-VITE_CHAT_API_URL=http://localhost:8080/api/canvas
-```
-
-개발 서버를 실행합니다.
-
-```bash
 npm run dev
 ```
 
-브라우저에서 `http://localhost:5173`으로 접속합니다.
+`http://localhost:5173`에서 확인합니다. 기본 개발 설정은 Vite가 `/api` 요청을 `127.0.0.1:8080`으로 전달합니다. 다른 백엔드를 사용하려면 `.env.local`의 `VITE_CHAT_API_URL`에 `https://서버주소/api/canvas`를 지정합니다.
+
+### 발표 시연
+
+1. **여행 환전이랑 보험 알려줘**를 누릅니다. 보험을 먼저 보여주고 필요한 통화만 묻습니다.
+2. **엔화로 3만엔**을 입력합니다. 보험 카드는 그대로 두고 환전 카드를 추가합니다. 같은 탭에서 새로고침해도 대화를 이어갈 수 있습니다.
+3. **새 대화 → 분실 카드 정지해줘 → 카드 일괄 정지 → 정지 확인**을 누릅니다. 서버가 시연용으로 정지를 완료하면 화면에 결과를 표시합니다.
+4. 위젯을 누르거나 닫으면 클릭·닫기 피드백을 보냅니다. 카드 정지는 완료 응답을 받은 뒤에만 완료 피드백을 보냅니다. 개발자 도구의 네트워크 탭이나 `/api/feedback/scores`에서 확인할 수 있습니다.
 
 ## API 사용 예시
 
