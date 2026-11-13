@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useOutletContext } from "react-router-dom";
 import Chat from "../components/Chat.jsx";
 import WidgetRenderer from "../components/WidgetRenderer.jsx";
 import ClarificationWidget from "../components/widgets/ClarificationWidget.jsx";
@@ -23,9 +24,9 @@ const STARTER_EXAMPLES = [
   { label: "분실 카드 정지해줘", message: "분실 카드 정지해줘" },
 ];
 
-function readSession() {
+function readSession(key) {
   try {
-    const stored = JSON.parse(sessionStorage.getItem(sessionStorageKey));
+    const stored = JSON.parse(sessionStorage.getItem(key));
     if (stored?.id && Array.isArray(stored.canvas?.widgets)
         && Date.now() - stored.updatedAt < SESSION_TTL_MS) return stored;
   } catch {
@@ -34,17 +35,19 @@ function readSession() {
   return { id: null, canvas: EMPTY_CANVAS, updatedAt: 0 };
 }
 
-function storeSession({ id, canvas, updatedAt }) {
+function storeSession(key, { id, canvas, updatedAt }) {
   try {
-    if (id) sessionStorage.setItem(sessionStorageKey, JSON.stringify({ id, canvas, updatedAt }));
-    else sessionStorage.removeItem(sessionStorageKey);
+    if (id) sessionStorage.setItem(key, JSON.stringify({ id, canvas, updatedAt }));
+    else sessionStorage.removeItem(key);
   } catch {
     // 화면 상태는 메모리에 남는다.
   }
 }
 
 function ChatPage() {
-  const [initialSession] = useState(readSession);
+  const owner = useOutletContext();
+  const key = owner === "guest" ? sessionStorageKey : `${sessionStorageKey}:${owner}`;
+  const [initialSession] = useState(() => readSession(key));
   const [canvas, setCanvas] = useState(initialSession.canvas);
   const [isLoading, setIsLoading] = useState(false);
   const [isSheetOpen, setIsSheetOpen] = useState(false);
@@ -56,8 +59,8 @@ function ChatPage() {
   const feedbackSent = useRef(new WeakMap());
 
   useEffect(() => {
-    storeSession({ id: sessionId.current, canvas, updatedAt: sessionUpdatedAt.current });
-  }, [canvas]);
+    storeSession(key, { id: sessionId.current, canvas, updatedAt: sessionUpdatedAt.current });
+  }, [canvas, key]);
 
   async function send(message) {
     if (sending.current) return false;
@@ -92,7 +95,7 @@ function ChatPage() {
     if (sending.current) return;
     sessionId.current = null;
     sessionUpdatedAt.current = 0;
-    storeSession({ id: null });
+    storeSession(key, { id: null });
     setCanvas(EMPTY_CANVAS);
     setError("");
     setChatVersion((value) => value + 1);

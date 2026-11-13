@@ -1,3 +1,5 @@
+import { actionAccessToken, invalidateActionToken, oidcRequested } from "./auth.js";
+
 const canvasUrl = import.meta.env.VITE_CHAT_API_URL || "/api/canvas";
 
 export const sessionStorageKey = `kkbb:canvas-session:${canvasUrl}`;
@@ -44,22 +46,25 @@ async function getPresentationToken() {
   return pendingPresentationToken;
 }
 
-async function postPresentationAction(path, body, headers = {}) {
-  const token = await getPresentationToken();
+async function postAction(path, body, headers = {}) {
+  const token = await (oidcRequested ? actionAccessToken() : getPresentationToken());
   try {
     return await post(apiUrl(path), body, { ...headers, Authorization: `Bearer ${token}` });
   } catch (error) {
-    if (error.status === 401 && presentationToken === token) presentationToken = null;
+    if (error.status === 401) {
+      if (oidcRequested) await invalidateActionToken(token);
+      else if (presentationToken === token) presentationToken = null;
+    }
     throw error;
   }
 }
 
 export function prepareCardFreeze(action, key) {
-  return postPresentationAction("actions", { type: action.type, params: action.params }, { "Idempotency-Key": key });
+  return postAction("actions", { type: action.type, params: action.params }, { "Idempotency-Key": key });
 }
 
 export function confirmCardFreeze(actionId, otp) {
-  return postPresentationAction(`actions/${encodeURIComponent(actionId)}/confirm`, otp ? { otp } : {});
+  return postAction(`actions/${encodeURIComponent(actionId)}/confirm`, otp ? { otp } : {});
 }
 
 export function recordFeedback(requestId, widgetType, event) {
