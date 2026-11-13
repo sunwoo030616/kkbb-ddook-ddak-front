@@ -29,12 +29,37 @@ export async function createCanvas(message, sessionId) {
   return { data, receivedAt: Date.now() };
 }
 
+let presentationToken;
+let pendingPresentationToken;
+
+async function getPresentationToken() {
+  if (presentationToken) return presentationToken;
+  pendingPresentationToken ??= post(apiUrl("presentation/token"), {})
+    .then(({ accessToken }) => {
+      if (typeof accessToken !== "string" || !accessToken) throw new Error("시연 토큰을 받지 못했어요.");
+      presentationToken = accessToken;
+      return accessToken;
+    })
+    .finally(() => { pendingPresentationToken = null; });
+  return pendingPresentationToken;
+}
+
+async function postPresentationAction(path, body, headers = {}) {
+  const token = await getPresentationToken();
+  try {
+    return await post(apiUrl(path), body, { ...headers, Authorization: `Bearer ${token}` });
+  } catch (error) {
+    if (error.status === 401 && presentationToken === token) presentationToken = null;
+    throw error;
+  }
+}
+
 export function prepareCardFreeze(action, key) {
-  return post(apiUrl("actions"), { type: action.type, params: action.params }, { "Idempotency-Key": key });
+  return postPresentationAction("actions", { type: action.type, params: action.params }, { "Idempotency-Key": key });
 }
 
 export function confirmCardFreeze(actionId, otp) {
-  return post(apiUrl(`actions/${encodeURIComponent(actionId)}/confirm`), otp ? { otp } : {});
+  return postPresentationAction(`actions/${encodeURIComponent(actionId)}/confirm`, otp ? { otp } : {});
 }
 
 export function recordFeedback(requestId, widgetType, event) {

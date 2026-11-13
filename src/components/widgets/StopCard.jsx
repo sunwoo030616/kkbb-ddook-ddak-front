@@ -46,7 +46,7 @@ function StopCard({ title = "보유 카드 일괄 정지", cards = [], action, o
       onActionCompleted?.();
       dialog.current.close();
     } catch (error) {
-      if (TERMINAL_ERRORS.has(error.code)) {
+      if (error.status === 401 || TERMINAL_ERRORS.has(error.code)) {
         setPrepared(null);
         setOtp("");
         idempotencyKey.current = null;
