@@ -173,7 +173,7 @@ cd KKBB-ddook-ddak-back
 SPRING_PROFILES_ACTIVE=presentation ./mvnw spring-boot:run
 ```
 
-일반 JEV 흐름을 테스트하려면 `presentation` 프로필을 끄고 백엔드에 `JEV_AI_API_KEY`를 설정합니다. 모의 실행 기능만 켤 때는 `APP_ACTION_DEMO_ENABLED=true`를 설정합니다.
+발표 프로필에서는 프론트가 모의 카드 정지에 필요한 시연용 토큰을 백엔드에서 자동으로 받습니다. 일반 JEV 흐름을 테스트하려면 `presentation` 프로필을 끄고 백엔드에 `JEV_AI_API_KEY`를 설정합니다.
 
 ### 2. Frontend 실행
 
