@@ -186,6 +186,21 @@ npm run dev
 
 `http://localhost:5173`에서 확인합니다. 기본 개발 설정은 Vite가 `/api` 요청을 `127.0.0.1:8080`으로 전달합니다. 다른 백엔드를 사용하려면 `.env.local`의 `VITE_CHAT_API_URL`에 `https://서버주소/api/canvas`를 지정합니다.
 
+### 로그인한 계정으로 카드 정지 확인
+
+1. [백엔드의 OIDC 로컬 설정](https://github.com/sunwoo030616/KKBB-ddook-ddak-back/blob/main/docs/OIDC_LOGIN.md)에 따라 Keycloak 테스트 계정을 만들고 백엔드를 실행합니다.
+2. 프론트의 `.env.local`에 아래 값을 설정한 뒤 Vite를 재시작합니다.
+
+   ```dotenv
+   VITE_CHAT_API_URL=http://localhost:8080/api/canvas
+   VITE_OIDC_ISSUER=http://localhost:18088/realms/kkbb-oidc-demo
+   VITE_OIDC_CLIENT_ID=kkbb-web
+   ```
+
+3. `http://localhost:5173`에서 **로그인**을 눌러 Keycloak 계정으로 로그인합니다. 돌아온 뒤 **분실 카드 정지해줘 → 카드 일괄 정지 → 정지 확인**을 누르면 모의 카드 정지 결과를 볼 수 있습니다.
+
+로그인은 [Authorization Code + PKCE](https://authts.github.io/oidc-client-ts/index.html)를 사용합니다. 프론트에는 클라이언트 시크릿을 넣지 않습니다. 액세스 토큰은 같은 탭의 세션 저장소에만 보관하며, 만료되거나 로그아웃하면 다시 로그인해야 합니다. 채팅 화면은 로그인 계정과 비로그인 상태 사이에서 공유하지 않습니다. 운영 사이트에서는 HTTPS 주소를 사용하고, SPA가 `/auth/callback`과 `/auth/logout`을 직접 열 수 있도록 호스팅을 설정합니다. 모의 카드 정지는 실제 카드에 영향을 주지 않습니다.
+
 ### 발표 시연
 
 첫 화면에서 **지갑 분실**, **해외여행 준비**, **동아리 회비 관리**를 누르면 대표 시나리오의 위젯 3개가 각각 표시됩니다. 아래 두 예시로 되묻기와 모의 실행을 따로 시연할 수 있습니다.

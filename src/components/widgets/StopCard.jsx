@@ -1,11 +1,13 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useSyncExternalStore } from "react";
 import Title from "../Title.jsx";
 import alert from "../../assets/icons/alert.svg";
+import { getAuth, login, oidcConfigured, subscribeAuth } from "../../lib/auth.js";
 import { confirmCardFreeze, prepareCardFreeze } from "../../lib/canvasApi.js";
 
 const TERMINAL_ERRORS = new Set(["EXPIRED", "LOCKED", "DENIED", "NOT_FOUND", "EXECUTION_FAILED"]);
 
 function StopCard({ title = "보유 카드 일괄 정지", cards = [], action, onActionCompleted }) {
+  const { user } = useSyncExternalStore(subscribeAuth, getAuth);
   const canRun = action?.type === "CARD_FREEZE_ALL";
   const [prepared, setPrepared] = useState(null);
   const [result, setResult] = useState(null);
@@ -18,6 +20,10 @@ function StopCard({ title = "보유 카드 일괄 정지", cards = [], action, o
 
   function open() {
     setError("");
+    if (oidcConfigured && !user) {
+      void login().catch(() => setError("로그인 화면을 열지 못했어요."));
+      return;
+    }
     dialog.current.showModal();
   }
 
@@ -71,12 +77,13 @@ function StopCard({ title = "보유 카드 일괄 정지", cards = [], action, o
         </p>
       ) : canRun ? (
         <button type="button" onClick={open} className="rounded-button bg-yellow px-4 py-3 text-title text-darkgray">
-          카드 일괄 정지
+          {oidcConfigured && !user ? "로그인하고 카드 정지" : "카드 일괄 정지"}
         </button>
       ) : (
         <p className="text-caption-1 text-gray">카드 정지는 KB스타뱅킹 앱에서 진행해 주세요.</p>
       )}
 
+      {error && oidcConfigured && !user && <p role="alert" className="text-body-2">{error}</p>}
       <dialog ref={dialog} aria-labelledby="card-freeze-title"
         onCancel={(event) => { if (operation.current) event.preventDefault(); }}
         className="fixed inset-0 m-auto w-[calc(100%-2rem)] max-w-[340px] rounded-card bg-white p-5 text-darkgray shadow-xl backdrop:bg-black/40">
